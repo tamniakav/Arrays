@@ -1,0 +1,63 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace P07.Sum_Arrays
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int[] arr1 = Console.ReadLine().Split().Select(s => int.Parse(s)).ToArray();
+            int[] arr2 = Console.ReadLine().Split().Select(s => int.Parse(s)).ToArray();
+
+            var a = arr1;
+            var b = arr2;
+
+            int len1 = arr1.Length;
+            int len2 = arr2.Length;
+            int len3 = Math.Max(len1, len2);
+
+            int[] arr3 = new int[len3];
+
+            for (int i = 0; i < len3; i++)
+            {
+                if (len1 == len2)
+                {
+                    arr3[i] = a[i] + b[i];
+                }
+                else if (len1 > len2)
+                {
+                    if (i >= len2)
+                    {
+                        int k = i % len2;
+                        arr3[i] = a[i] + b[k];
+                    }
+                    else
+                    {
+                        arr3[i] = a[i] + b[i];
+                    }
+                    
+                }
+                else
+                {
+                    if (i >= len1)
+                    {
+                        int k = i % len1;
+                        arr3[i] = a[k] + b[i];
+                    }
+                    else
+                    {
+                        arr3[i] = a[i] + b[i];
+                    }
+                }
+
+                Console.Write(arr3[i] + " ");
+            }
+
+            Console.WriteLine();
+        }
+    }
+}
