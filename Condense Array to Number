@@ -1,0 +1,40 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace P08.Condense_Array_to_Number
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int[] nums = Console.ReadLine().Split(' ').Select(s => int.Parse(s)).ToArray();
+            int length = nums.Length;
+            int[] condenset = new int[length - 1];
+            int counter = 1;
+            if (length > 1)
+            {
+                while (counter != length)
+                {
+                    for (int i = 0; i < length - 1; i++)
+                    {
+                        condenset[i] = nums[i] + nums[i + 1];
+                        nums[i] = condenset[i];
+                    }
+
+                    nums[length - counter] = 0;
+                    counter++;
+                }
+
+                Console.WriteLine(nums[0]);
+            }
+            else
+            {
+                Console.WriteLine(nums[0]);
+            }
+            
+        }
+    }
+}
